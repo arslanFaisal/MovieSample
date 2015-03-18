@@ -18,10 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     listDataArray = [NSMutableArray array];
-    // Initializing Network Manager to download the json from the url
-    MSNetworkManager *networkManager = [MSNetworkManager sharedManager];
-    networkManager.jsonDelegate = self; //setting delegate for url responses
-    [networkManager downloadSampleJsonAtURL:JSON_URL];
+    [self downloadJson];//downloading all the data
     
 }
 
@@ -76,8 +73,15 @@
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil];
     [alertView show];
+    [NSTimer scheduledTimerWithTimeInterval:30.0f target:self selector:@selector(downloadJson) userInfo:nil repeats:NO]; //setting a timer to check again in 30 sec we can also put a refresh button in the view but just to keep it simple
 }
 #pragma mark - custom Methods
+-(void)downloadJson{
+    // Initializing Network Manager to download the json from the url
+    MSNetworkManager *networkManager = [MSNetworkManager sharedManager];
+    networkManager.jsonDelegate = self; //setting delegate for url responses
+    [networkManager downloadSampleJsonAtURL:JSON_URL];
+}
 -(void)setUpImagesAndLoadTableWithArray:(NSArray*)jsonArray{
     [listDataArray removeAllObjects];//remove all the existing items to use with current downloaded list
     for (NSDictionary *dict in jsonArray) {

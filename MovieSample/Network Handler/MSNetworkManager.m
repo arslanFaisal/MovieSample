@@ -48,7 +48,7 @@ static MSNetworkManager* _sharedObject = nil;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //Calling Delegates failure callback if delegate has implemented the call
         if ([self.jsonDelegate respondsToSelector:@selector(getJsonDidFail:)]) {
-            
+            [self.jsonDelegate getJsonDidFail:error];
         }
     }];
     [operation start];
