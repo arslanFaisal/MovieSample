@@ -1,0 +1,18 @@
+//
+//  PrefixHeader.pch
+//  MovieSample
+//
+//  Created by Arslan  on 18/03/2015.
+//  Copyright (c) 2015 Arslan . All rights reserved.
+
+//PCH file included to precompile the headers which are required across the app rather than importing everywhere separately
+
+#ifndef MovieSample_PrefixHeader_pch
+#define MovieSample_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "Constants.h"
+#import "MSAppDelegate.h"
+#import "MSUtility.h"
+#endif
